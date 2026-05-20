@@ -41,4 +41,16 @@ public class PlaylistController {
     public void add(@PathVariable Integer playlistId, @PathVariable Integer musicId) throws NotFoundException {
         playlistService.addMusic(playlistId, musicId);
     }
+
+    @DeleteMapping("/{playlistId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer playlistId) throws NotFoundException{
+        playlistService.deletePlaylist(playlistId);
+    }
+
+    @DeleteMapping("/{playlistId}/musics/{musicId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remove(@PathVariable Integer playlistId, @PathVariable Integer musicId) throws NotFoundException{
+        playlistService.removeMusic(playlistId, musicId);
+    }
 }

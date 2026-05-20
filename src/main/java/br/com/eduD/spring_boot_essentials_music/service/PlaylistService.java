@@ -50,4 +50,22 @@ public class PlaylistService {
         return playlistRepository.save(playlist);
     }
 
+    public void removeMusic(Integer playlistId, Integer musicId) throws NotFoundException{
+        PlaylistEntity playlist = playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new NotFoundException("Playlist não encontrada"));
+
+        MusicEntity music = musicRepository.findById(musicId)
+                .orElseThrow(() -> new NotFoundException("Música não encontrada"));
+
+        playlist.getMusics().remove(music);
+    }
+
+    public void deletePlaylist(Integer playlistId) throws NotFoundException{
+
+        PlaylistEntity playlist = playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new NotFoundException("Playlist não encontrada"));
+
+        playlistRepository.delete(playlist);
+    }
+
 }

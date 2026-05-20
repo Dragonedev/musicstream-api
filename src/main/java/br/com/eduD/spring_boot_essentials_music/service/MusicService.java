@@ -20,11 +20,11 @@ public class MusicService {
     }
 
     public void save(MusicDto musicDto){
-        MusicEntity newMusic = musicRepository.save(MusicEntity.builder()
+        MusicEntity newMusic = MusicEntity.builder()
                         .title(musicDto.getTitle())
                         .artist(musicDto.getArtist())
                         .plays(musicDto.getPlays())
-                .build());
+                .build();
 
         musicRepository.save(newMusic);
     }
