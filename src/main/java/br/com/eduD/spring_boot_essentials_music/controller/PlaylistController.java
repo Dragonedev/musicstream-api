@@ -30,6 +30,7 @@ public class PlaylistController {
     public Set<MusicEntity> getMusicByPlaylistId(@PathVariable Integer playlistId) throws NotFoundException{
         return playlistService.findMusicFromPlaylist(playlistId);
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody PlaylistDto playlistDto){
@@ -42,6 +43,12 @@ public class PlaylistController {
         playlistService.addMusic(playlistId, musicId);
     }
 
+    @PutMapping("/{playlistId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void uptade(@PathVariable Integer playlistId, @RequestBody PlaylistDto playlistDto) throws NotFoundException{
+        playlistService.uptadePlaylist(playlistId,playlistDto);
+    }
+    
     @DeleteMapping("/{playlistId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer playlistId) throws NotFoundException{

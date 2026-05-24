@@ -50,6 +50,16 @@ public class PlaylistService {
         return playlistRepository.save(playlist);
     }
 
+    public void uptadePlaylist(Integer playlistId, PlaylistDto playlistDto) throws NotFoundException{
+
+        PlaylistEntity playlist = playlistRepository.findById(playlistId)
+                .orElseThrow(() -> new NotFoundException("Playlist não encontrada"));
+
+        playlist.setName(playlistDto.getName());
+
+        playlistRepository.save(playlist);
+    }
+
     public void removeMusic(Integer playlistId, Integer musicId) throws NotFoundException{
         PlaylistEntity playlist = playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new NotFoundException("Playlist não encontrada"));
